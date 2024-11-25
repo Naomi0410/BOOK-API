@@ -10,7 +10,7 @@
     "rewrites": [
       {
         "source": "/api/(.*)",
-        "destination": "/api/:match*"
+        "destination": "/api"
       }
     ]
   }
