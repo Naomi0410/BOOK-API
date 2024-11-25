@@ -10,18 +10,12 @@ if (!port || !env.MONGO_URI) {
   );
 }
 
-connectToDb()
-  .then(() => startServer())
-  .catch((error) => {
-    console.log("Invalid database connection", error);
+export const startServer = async () => {
+  await connectToDb();
+  app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
   });
+};
 
-function startServer() {
-  app.listen(port, (error) => {
-    if (error) {
-      console.log("Cannot connect to server", error);
-    } else {
-      console.log(`Server is connected to port ${port}`);
-    }
-  });
-}
+startServer();
+

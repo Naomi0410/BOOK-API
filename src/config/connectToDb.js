@@ -8,16 +8,16 @@ export const connectToDb = async () => {
     console.log("MongoDb is already connected");
     return;
   }
-  let db;
+
   try {
     connection.isConnected = true;
-    db = await mongoose.connect(env.MONGO_URI, {
+    const db = await mongoose.connect(env.MONGO_URI, {
       dbName: "BookAPI",
+      serverSelectionTimeoutMS: 30000, // 30 seconds
     });
     console.log("MongoDb connected successfully");
   } catch (error) {
-    console.log(error);
-  } finally {
-    connection.isConnected = db.connections[0].readyState; 
+    console.error("Error connecting to MongoDB:", error);
+    throw error;
   }
 };
