@@ -4,11 +4,16 @@ const bookSchema = new Schema({
   title: {
     type: String,
     unique: true,
+    required: true
   },
-  author: String,
+  author: { 
+    type: String, 
+    required: true
+  },
   genre: {
     type: String,
     enum: ["Comedy", "Romance", "Tragedy", "Horror"],
+    required: true
   },
 });
 
