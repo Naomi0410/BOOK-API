@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "4d2febdb-1ff7-4954-bb8b-87822e68a66f",
+		"name": "Book API",
+		"description": "The Book API is a simple RESTful API designed to manage books. It provides endpoints for retrieving, creating, updating, and deleting books.\n\nThe API is ideal for developers building book-related applications, such as bookstores, libraries, or reading platforms.\n\nThe base URL is [http://localhost:5000/api/v1/book](http://localhost:5000/api/v1/book)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36812144"
+	},
+	"item": [
+		{
+			"name": "Get all books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5000/api/v1/book",
+				"description": "Get All Books\n\n- Endpoint: /\n    \n- Method: GET\n    \n- Description: Retrieves a list of all books.\n    \n- Request Body: None\n    \n- Query Parameters: None\n    \n- Response Details:\n    \n    - Status Code: 200 OK\n        \n    - Response Body: JSON array of book objects\n        \n    - Example Response:\n        \n\n`[ { \"_id\": \"67442d94c9513086fb908fe6\",`\n\n`\"title\": \"A woman in her prime\",`\n\n`\"author\": \"Asare Konadu\",`\n\n`\"genre\": \"Romance\",`\n\n**`\"__v\": 0 },`**\n\n**`{ \"_id\": \"6744372045648582acf04821\",`**\n\n**`\"title\": \"Had I known\",`**\n\n**`\"author\": \"Ubani Peter\",`**\n\n**`\"genre\": \"Tragedy\",`**\n\n`\"__v\": 0 }`\n\n`]`"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"title\" : \"Book title\",\r\n  \"author\" : \"book author\",\r\n  \"genre\" : \"Romance\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/v1/book/create",
+				"description": "Create Book\n\nEndpoint: /create\n\nMethod: POST\n\nDescription: Creates a new book.\n\nRequest Body:\n\n- title (required)\n    \n- author (required)\n    \n- genre (required)\n    \n\nQuery Parameters: None\n\nResponse Details:\n\n- Status Code: 201 Created\n    \n- Response Body: JSON object of the newly created book\n    \n\nNote: A book with an existing title cannot be created.\n\nExample Request Body:  \n`{ \"title\": \"A woman in her prime\",`\n\n`\"author\": \"Asare Konadu\",`\n\n`\"genre\": \"Romance\" }`\n\nExample Response:  \n`{ \"_id\": \"67442d94c9513086fb908fe6\",`\n\n`\"title\": \"A woman in her prime\",`\n\n`\"author\": \"Asare Konadu\",`\n\n`\"genre\": \"Romance\",`\n\n`\"__v\": 0 }`"
+			},
+			"response": []
+		},
+		{
+			"name": "Get a book by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/v1/book/67442d94c9513086fb908fe6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"67442d94c9513086fb908fe6"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Get Book by ID\n\n- Endpoint: /:id\n    \n- Method: GET\n    \n- Description: Retrieves a book by its ID.\n    \n- Request Body: None\n    \n- Path Parameter: id\n    \n- Response Details:\n    \n    - Status Code: 200 OK\n        \n    - Response Body: JSON array of book objects\n        \n    - Example Response:\n        \n\n`[ { \"_id\": \"67442d94c9513086fb908fe6\",`\n\n`\"title\": \"A woman in her prime\",`\n\n`\"author\": \"Asare Konadu\",`\n\n`\"genre\": \"Romance\",`\n\n`\"__v\": 0 }]`\n\nNote: In the example URL, 67442d94c9513086fb908fe6 is a sample ID used for testing purposes."
+			},
+			"response": []
+		},
+		{
+			"name": "update book by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"title\": \"Had I known\",\r\n        \"author\": \"Ubani Peter\",\r\n        \"genre\": \"Tragedy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/v1/book/update/6744372045648582acf04821",
+				"description": "Update Book by ID\n\nEndpoint: update/:id  \nMethod: PUT  \nDescription: Updates a book by its ID.\n\nRequest Body:\n\n- title (optional)\n    \n- author (optional)\n    \n- genre (optional)\n    \n\nPath Parameter: id\n\nResponse Details:\n\n- Status Code: 200 OK\n    \n- Response Body: JSON object of the updated book\n    \n\nNote: You can update one or more fields. All fields are required in the request body. The ID in the URL is required.\n\nExample Request Body:  \n`{ \"title\": \"Had I known\",`\n\n`\"author\": \"Ubani Peter\",`\n\n`\"genre\": \"Tragedy\" }`\n\nExample Response`:`\n\n`{ \"_id\": \"6744372045648582acf04821\",`\n\n`\"title\": \"Had I known\",`\n\n`\"author\": \"Ubani Peter\",`\n\n`\"genre\": \"Tragedy\" ,`\n\n`\"__v\": 0 }`\n\nNote: In the example URL, 6744372045648582acf04821 is a sample ID used for testing purposes."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete book by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:5000/api/v1/book/delete/6744372045648582acf04821",
+				"description": "Delete Book by ID\n\nEndpoint: delete/:id  \nMethod: DELETE  \nDescription: Deletes a book by its ID.  \nRequest Body: None  \nPath Parameter: id  \nResponse Details:\n\n- Status Code: 200 OK\n    \n- Response Body: JSON object with a success message\n    \n\nExample Request URL: /delete/6744372045648582acf04821\n\nExample Response:  \n`{   \"message\": \"Book deleted successfully\"   }`\n\nNote: In the example URL, 6744372045648582acf04821 is a sample ID used for testing purposes."
+			},
+			"response": []
+		}
+	]
+}
